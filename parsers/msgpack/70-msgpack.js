@@ -13,7 +13,6 @@ module.exports = function(RED) {
                     try {
                         msg.payload = msgpack.decode(msg.payload);
                         node.send(msg);
-                        node.status({text:l +" b->o "+ JSON.stringify(msg.payload).length});
                     }
                     catch (e) {
                         node.error("Bad decode",msg);
@@ -21,9 +20,7 @@ module.exports = function(RED) {
                     }
                 }
                 else {
-                    var le = JSON.stringify(msg.payload).length;
                     msg.payload = msgpack.encode(msg.payload);
-                    node.status({text:le +" o->b "+ msg.payload.length});
                     node.send(msg);
                 }
             }
